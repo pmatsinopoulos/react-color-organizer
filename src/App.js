@@ -1,72 +1,79 @@
 import React, { Component } from 'react';
 import logo from './logo.svg';
 import './App.css';
-import C from "./constants";
-import {color} from "./reducers";
-import {colors} from "./reducers";
-import {sort} from "./reducers";
-import {createStore, combineReducers} from 'redux';
+// import C from "./constants";
+// import {color} from "./reducers";
+// import {colors} from "./reducers";
+// import {sort} from "./reducers";
+// import {createStore, combineReducers} from 'redux';
 import {addColor, rateColor} from './actionCreators';
-import {compose} from 'redux';
+// import {compose} from 'redux';
 
-const uuidv1 = require('uuid/v1');
+// const uuidv1 = require('uuid/v1');
 
-const initialState = {
-    colors: [
-        {
-            title: "Black",
-            color: "#000000",
-            rating: 1
-        },
-        {
-            title: "Red",
-            color: "#FF0000",
-            rating: 2
-        },
-        {
-            title: "Green",
-            color: "#00FF00",
-            rating: 3
-        },
-        {
-            title: "Blue",
-            color: "#0000FF",
-            rating: 4
-        },
-    ],
-    sort: C.SORTED_BY_DATE
-};
+import storeFactory from './storeFactory';
 
-const store = createStore(combineReducers({colors, sort}),
-  localStorage['redux-store'] ? JSON.parse(localStorage['redux-store']) : {}
-  );
-console.log(store.getState());
+const store = storeFactory({});
 
+store.dispatch(addColor("#FFFFFF", "Black", 2));
+
+
+// const initialState = {
+//     colors: [
+//         {
+//             title: "Black",
+//             color: "#000000",
+//             rating: 1
+//         },
+//         {
+//             title: "Red",
+//             color: "#FF0000",
+//             rating: 2
+//         },
+//         {
+//             title: "Green",
+//             color: "#00FF00",
+//             rating: 3
+//         },
+//         {
+//             title: "Blue",
+//             color: "#0000FF",
+//             rating: 4
+//         },
+//     ],
+//     sort: C.SORTED_BY_DATE
+// };
+//
+// const store = createStore(combineReducers({colors, sort}),
+//   localStorage['redux-store'] ? JSON.parse(localStorage['redux-store']) : {}
+//   );
+// console.log(store.getState());
+//
 // Let's create some subscribers to the store
-const unsubscribeRef = store.subscribe(() => localStorage['redux-store'] = JSON.stringify(store.getState()));
+// const unsubscribeRef = store.subscribe(() => localStorage['redux-store'] = JSON.stringify(store.getState()));
+//
+// initialState.colors.forEach(c => store.dispatch(addColor(c.title, c.color, c.rating)));
 
-initialState.colors.forEach(c => store.dispatch(addColor(c.title, c.color, c.rating)));
-
-store.dispatch(addColor('Almost White', '#F1F1F1', 1));
-console.log(store.getState());
+// store.dispatch(addColor('Almost White', '#F1F1F1', 1));
+// console.log(store.getState());
 
 // change the rating of the Red color to 16:
-const colorId = store.getState().colors.filter(c => c.title === "Red")[0].id;
-console.log(`Changing rating of color with id: ${colorId}`);
-
-store.dispatch(rateColor(colorId, 16));
-console.log(store.getState());
-
-console.log("Printing all colors >");
-// console.log(store.getState().colors.map(c => c.title).join(', '));
-const print = compose(
-  joinedTitles => console.log(joinedTitles),
-  titles => titles.join(', '),
-  map => map(c => c.title),
-  colors => colors.map.bind(colors),
-  state => state.colors
-);
-print(store.getState());
+// const colorId = store.getState().colors.filter(c => c.title === "Red")[0].id;
+// console.log(`Changing rating of color with id: ${colorId}`);
+//
+// store.dispatch(rateColor(colorId, 16));
+// console.log(store.getState());
+//
+// console.log("Printing all colors >");
+// // console.log(store.getState().colors.map(c => c.title).join(', '));
+// const print = compose(
+//   joinedTitles => console.log(joinedTitles),
+//   titles => titles.join(', '),
+//   map => map(c => c.title),
+//   colors => colors.map.bind(colors),
+//   state => state.colors
+// );
+// print(store.getState());
 
 // const action = {
 //     type: C.ADD_COLOR,
