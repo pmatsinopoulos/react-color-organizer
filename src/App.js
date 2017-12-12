@@ -7,6 +7,7 @@ import {colors} from "./reducers";
 import {sort} from "./reducers";
 import {createStore, combineReducers} from 'redux';
 import {addColor, rateColor} from './actionCreators';
+import {compose} from 'redux';
 
 const uuidv1 = require('uuid/v1');
 
@@ -55,6 +56,17 @@ console.log(`Changing rating of color with id: ${colorId}`);
 
 store.dispatch(rateColor(colorId, 16));
 console.log(store.getState());
+
+console.log("Printing all colors >");
+// console.log(store.getState().colors.map(c => c.title).join(', '));
+const print = compose(
+  joinedTitles => console.log(joinedTitles),
+  titles => titles.join(', '),
+  map => map(c => c.title),
+  colors => colors.map.bind(colors),
+  state => state.colors
+);
+print(store.getState());
 
 // const action = {
 //     type: C.ADD_COLOR,
