@@ -6,53 +6,54 @@ import {color} from "./reducers";
 import {colors} from "./reducers";
 import {sort} from "./reducers";
 import {createStore, combineReducers} from 'redux';
+import {addColor, rateColor} from './actionCreators';
 
 const uuidv1 = require('uuid/v1');
 
 const initialState = {
     colors: [
         {
-            id: uuidv1(),
             title: "Black",
             color: "#000000",
-            rating: 1,
-            timestamp: (new Date()).toUTCString()
+            rating: 1
         },
         {
-            id: uuidv1(),
             title: "Red",
             color: "#FF0000",
-            rating: 2,
-            timestamp: (new Date()).toUTCString()
+            rating: 2
         },
         {
-            id: uuidv1(),
             title: "Green",
             color: "#00FF00",
-            rating: 3,
-            timestamp: (new Date()).toUTCString()
+            rating: 3
         },
         {
-            id: uuidv1(),
             title: "Blue",
             color: "#0000FF",
-            rating: 4,
-            timestamp: (new Date()).toUTCString()
+            rating: 4
         },
     ],
     sort: C.SORTED_BY_DATE
 };
-const store = createStore(combineReducers({colors, sort}), initialState);
 
+const store = createStore(combineReducers({colors, sort}),
+  localStorage['redux-store'] ? JSON.parse(localStorage['redux-store']) : {}
+  );
 console.log(store.getState());
 
-store.dispatch({type: C.ADD_COLOR, id: uuidv1(), color: "#F1F1F1", title: "Almost White", timestamp: (new Date()).toUTCString()});
+// Let's create some subscribers to the store
+const unsubscribeRef = store.subscribe(() => localStorage['redux-store'] = JSON.stringify(store.getState()));
+
+initialState.colors.forEach(c => store.dispatch(addColor(c.title, c.color, c.rating)));
+
+store.dispatch(addColor('Almost White', '#F1F1F1', 1));
 console.log(store.getState());
 
-// change the rating of the Red color to 6:
-const colorId = initialState.colors.filter(c => c.title === "Red")[0].id;
+// change the rating of the Red color to 16:
+const colorId = store.getState().colors.filter(c => c.title === "Red")[0].id;
 console.log(`Changing rating of color with id: ${colorId}`);
-store.dispatch({type: C.RATE_COLOR, id: colorId, rating: 10});
+
+store.dispatch(rateColor(colorId, 16));
 console.log(store.getState());
 
 // const action = {
