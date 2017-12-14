@@ -1,34 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 import {PropTypes} from 'prop-types';
 
-class AddColorForm extends Component {
-  constructor(props) {
-    super(props);
-    this.submit = this.submit.bind(this);
-    this.newColor = this.props.onNewColor;
-  }
+// We provide a default value for the onNewColor property
+const AddColorForm = ({onNewColor = f => f}) => {
+  let _title, _color;
 
-  submit(event) {
+  const submit = event => {
     event.preventDefault();
-    console.log(`submit() method inside AddColorForm executed`);
-    this.newColor(this.refs._title.value, this.refs._color.value);
+    onNewColor(_title.value, _color.value);
+    _title.value = '';
+    _color.value = '#000000';
+    _title.focus();
+  };
 
-    // Do I send the values to the backend here? I may need to do that.
-
-    // reset form fields
-    this.refs._title.value = '';
-    this.refs._color.value = '#000000';
-  }
-  render() {
-    return(
-      <form onSubmit={this.submit}>
-        <input type="text" placeholder="color name..." required ref="_title"/>
-        <input type="color" required ref="_color"/>
-        <button>ADD</button>
-      </form>
-    )
-  }
-}
+  return (
+    <form onSubmit={submit}>
+      <input type="text" placeholder="color name..." required ref={input => _title = input}/>
+      <input type="color" required ref={input => _color = input}/>
+      <button>ADD</button>
+    </form>
+  );
+};
 
 AddColorForm.propTypes = {
   onNewColor: PropTypes.func
