@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import {AddColorForm} from "./AddColorForm";
+import {Star} from './Star';
 
 class App extends Component {
   // How can our App component have access to the values of the input controls of the form?
@@ -11,7 +12,10 @@ class App extends Component {
   }
   render() {
     return(
-      <AddColorForm onNewColor={this.newColor}/>
+      <div>
+        <AddColorForm onNewColor={this.newColor}/>
+        <Star />
+      </div>
     )
   }
 }
