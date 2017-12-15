@@ -16,6 +16,7 @@ class App extends Component {
     };
     this.newColor = this.newColor.bind(this);
     this.removeColor = this.removeColor.bind(this);
+    this.rateColor = this.rateColor.bind(this);
   }
 
   // How can our App component have access to the values of the input controls of the form?
@@ -33,11 +34,20 @@ class App extends Component {
     this.setState(newState);
   }
 
+  rateColor(colorIndex, rating) {
+    const newState = {colors: this.state.colors.map((color, index) => (index === colorIndex) ? ({...color, rating}) : color)};
+
+    this.setState(newState);
+  }
+
   render() {
+    const {newColor, removeColor, rateColor} = this;
     return(
       <div>
-        <AddColorForm onNewColor={this.newColor}/>
-        <ColorList colors={this.state.colors} onRemove={(colorIndex) => this.removeColor(colorIndex)}/>
+        <AddColorForm onNewColor={newColor}/>
+        <ColorList colors={this.state.colors}
+                   onRemove={removeColor}
+                   onRate={rateColor}/>
       </div>
     )
   }

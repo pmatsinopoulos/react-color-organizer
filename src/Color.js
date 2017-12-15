@@ -1,7 +1,7 @@
 import React from 'react';
 import {StarRating} from "./StarRating";
 
-const Color = ({color, onRemove=f=>f}) => {
+const Color = ({color, onRemove=f=>f, onRate=f=>f}) => {
   return(
     <div className="color">
       <h1>{color.title}</h1>
@@ -10,7 +10,7 @@ const Color = ({color, onRemove=f=>f}) => {
       </div>
 
       <div>
-        <StarRating starsSelected={color.rating}/>
+        <StarRating starsSelected={color.rating} onRate={onRate}/>
       </div>
       <div>
         <button onClick={onRemove}>REMOVE</button>

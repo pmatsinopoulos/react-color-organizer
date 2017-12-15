@@ -7,7 +7,7 @@ const StarRating = ({starsSelected=0, totalStars=5, onRate=f=>f}) => {
       {
         Array(totalStars).fill().map( (_, i) => <Star key={i} selected={starsSelected > i} onClick={() => onRate(i + 1)}/>)
       }
-      <button onClick={() => this.change(0)}>clear</button>
+      <button onClick={() => onRate(0)}>clear</button>
       <p>{starsSelected} of {totalStars} stars</p>
     </div>
   )
