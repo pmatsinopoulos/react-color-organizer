@@ -14,7 +14,7 @@ class App extends Component {
     return(
       <div>
         <AddColorForm onNewColor={this.newColor}/>
-        <StarRating />
+        <StarRating starsSelected={3}/>
       </div>
     )
   }

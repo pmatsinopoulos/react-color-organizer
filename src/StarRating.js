@@ -1,23 +1,19 @@
-import React from 'react';
+import React, {Component} from 'react';
 import {Star} from './Star';
 import {PropTypes} from 'prop-types';
 
-const createReactClass = require('create-react-class');
+class StarRating extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      starsSelected: props.starsSelected || 0
+    };
+    this.change = this.change.bind(this);
+  }
 
-const StarRating = createReactClass({
-  displayName: 'StarRating',
-  propTypes: {totalStars: PropTypes.number},
-  getDefaultProps() {
-    return {totalStars: 5}
-  },
-  getInitialState() {
-    return {
-      starsSelected: 0
-    }
-  },
   change(starsSelected) {
     this.setState({starsSelected})
-  },
+  }
   render() {
     const {totalStars} = this.props;
     const {starsSelected} = this.state;
@@ -31,6 +27,14 @@ const StarRating = createReactClass({
       </div>
     )
   }
-});
+}
+
+StarRating.propTypes = {
+  totalStars: PropTypes.number
+};
+
+StarRating.defaultProps = {
+  totalStars: 5
+};
 
 export {StarRating};
