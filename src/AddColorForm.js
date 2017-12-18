@@ -3,7 +3,7 @@ import {PropTypes} from 'prop-types';
 import {addColor} from './actionCreators';
 
 // We provide a default value for the onNewColor property
-const AddColorForm = ({store}) => {
+const AddColorForm = (props, {store}) => {
   let _title, _color;
 
   const submit = event => {
@@ -24,7 +24,7 @@ const AddColorForm = ({store}) => {
   );
 };
 
-AddColorForm.propTypes = {
+AddColorForm.contextTypes = {
   store: PropTypes.object
 };
 
