@@ -24,7 +24,16 @@ const color = (state={}, action) => {
 };
 
 const colors = (state=[], action) => {
-  return []
+  switch(action.type) {
+    case C.ADD_COLOR:
+      return [...state, color({}, action)];
+    case C.RATE_COLOR:
+      return state.map(c => color(c, action));
+    case C.REMOVE_COLOR:
+      return state.filter((color, index) => color.id !== action.id);
+    default:
+      return state;
+  }
 };
 
 const sort = (state=C.SORTED_BY_DATE, action) => {
