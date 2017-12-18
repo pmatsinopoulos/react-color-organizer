@@ -45,4 +45,4 @@ const sort = (state=C.SORTED_BY_DATE, action) => {
   }
 };
 
-export {color};
+export {color, colors, sort};

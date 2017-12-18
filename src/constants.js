@@ -9,4 +9,4 @@ const constants = {
   SORTED_BY_TITLE: "SORTED_BY_TITLE"
 };
 
-export default contants;
+export default constants;

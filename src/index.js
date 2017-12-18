@@ -3,7 +3,14 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import './App.css';
 import App from './App';
-import registerServiceWorker from './registerServiceWorker';
+import storeFactory from './storeFactory';
 
-ReactDOM.render(<App />, document.getElementById('root'));
-registerServiceWorker();
+const store = storeFactory();
+
+const render = () =>
+  ReactDOM.render(<App store={store}/>, document.getElementById('root'));
+
+store.subscribe(render);
+
+render();
+

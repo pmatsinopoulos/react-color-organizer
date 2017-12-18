@@ -1,5 +1,5 @@
 import {applyMiddleware, createStore, combineReducers} from 'redux';
-
+import {colors, sort} from './reducers';
 
 const logger = store => next => action => {
   let result;
@@ -18,7 +18,7 @@ const logger = store => next => action => {
 const saver = store => next => action => {
   let result = next(action);
 
-  localStore['redux-store'] = JSON.stringify(store.getState());
+  localStorage['redux-store'] = JSON.stringify(store.getState());
   return result;
 };
 
