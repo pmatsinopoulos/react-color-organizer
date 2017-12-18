@@ -37,7 +37,12 @@ const colors = (state=[], action) => {
 };
 
 const sort = (state=C.SORTED_BY_DATE, action) => {
-  return '';
+  switch(action.type) {
+    case C.SORT_COLORS:
+      return action.sortBy; // this needs to return a _valid_ sortBy option
+    default:
+      return state;
+  }
 };
 
 export {color};
