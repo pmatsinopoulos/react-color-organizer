@@ -39,15 +39,15 @@ When creating a store, one can define the initial state as the second argument t
 
 ### store API
 
-#### Get Current State
+#### Get Current State - `getState()`
 
 `store.getState()`
 
-#### Dispatch an Action
+#### Dispatch an Action - `dispatch()`
 
 `store.distach({.....<action>.....})`
 
-#### Register Subscribers/Handling Functions
+#### Register Subscribers/Handling Functions - `subscribe()`
 
 `store.subscribe(<function definition>)`
 
@@ -61,7 +61,7 @@ const unsubscribe = store.subscribe(() => console.log(store.getState()));
 unsubscribe();
 ``` 
 
-### `compose`
+### `compose()`
 
 Allows one to compose many functions into one. Example:
 
@@ -78,6 +78,17 @@ const print = compose(
 
 print(store.getState());
 ```
+
+### `applyMiddleware()`
+
+A middleware in Redux is defined as a higher order function. It is a function that returns a function that returns a function. The
+last function defined is the one that is being logged every time an action is dispatched. I.e. every time we call
+`store.dispatch({....action....})`, in order to update the application state.
+
+See for example the [`storeFactory.js`](./src/storeFactory.js). It defines two middleware functions, which are applied
+using the `applyMiddleware()`.
+
+
 
 
 

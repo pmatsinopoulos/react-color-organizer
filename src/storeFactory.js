@@ -27,9 +27,9 @@ const storeFactory = (initialState={}) => {
     logger, saver // install 2 pieces of middleware
   );
 
-  let storeInMiddleware = middlewareStack(createStore);
+  let storeWithMiddleware = middlewareStack(createStore);
 
-  return storeInMiddleware(
+  return storeWithMiddleware(
     combineReducers({colors, sort}),
     localStorage['redux-store'] ? JSON.parse(localStorage['redux-store']) : initialState
     );
