@@ -61,10 +61,6 @@ const unsubscribe = store.subscribe(() => console.log(store.getState()));
 unsubscribe();
 ``` 
 
-### Action Creators
-
-They are functions that help us create action objects by writing less code.
-
 
 
 
