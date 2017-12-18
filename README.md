@@ -61,6 +61,23 @@ const unsubscribe = store.subscribe(() => console.log(store.getState()));
 unsubscribe();
 ``` 
 
+### `compose`
+
+Allows one to compose many functions into one. Example:
+
+``` javascript
+import {compose} from 'redux';
+
+const print = compose(
+    list => console.log(list)
+    titles => titles.join(', '),
+    map => map(c => c.title),
+    colors => colors.map.bind(colors),
+    state => state.colors
+);
+
+print(store.getState());
+```
 
 
 
