@@ -11,4 +11,15 @@ const rateColor = (id, rating) => ({
   rating
 });
 
-export {removeColor, rateColor};
+const sortColors = sortBy => ({
+  type: C.SORT_COLORS,
+  sortBy
+});
+
+const addColor = (title, color) => ({
+  type: C.ADD_COLOR,
+  title,
+  color
+});
+
+export {removeColor, rateColor, sortColors, addColor};
