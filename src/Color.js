@@ -1,5 +1,6 @@
 import React from 'react';
 import {StarRating} from "./StarRating";
+import {PropTypes} from 'prop-types';
 
 const Color = ({color, onRemove=f=>f, onRate=f=>f}) => {
   return(
@@ -17,6 +18,12 @@ const Color = ({color, onRemove=f=>f, onRate=f=>f}) => {
       </div>
     </div>
   )
+};
+
+Color.propTypes = {
+  title: PropTypes.string,
+  color: PropTypes.string,
+  rating: PropTypes.number
 };
 
 export {Color};
