@@ -88,6 +88,10 @@ last function defined is the one that is being logged every time an action is di
 See for example the [`storeFactory.js`](./src/storeFactory.js). It defines two middleware functions, which are applied
 using the `applyMiddleware()`.
 
+### Redux context
+
+Allows us to pass variables to components without having to explicitly pass them down the tree as properties. Any child component
+can access these context variables.
 
 
 
