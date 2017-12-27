@@ -93,6 +93,13 @@ using the `applyMiddleware()`.
 Allows us to pass variables to components without having to explicitly pass them down the tree as properties. Any child component
 can access these context variables.
 
+### Redux Provider - `react-redux`
+
+....
+
+### Redux Provider - `react-redux` - `connect()` function
+
+....
 
 
 

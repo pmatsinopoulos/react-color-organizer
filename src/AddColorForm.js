@@ -28,5 +28,5 @@ AddColorForm.contextTypes = {
   store: PropTypes.object
 };
 
-export {AddColorForm}
+export {AddColorForm};
 
